@@ -1,2 +1,2 @@
 # Workshop-2
-2nd workshop Java Developer
+Drugi warsztat z kursu Java Developer od CodersLab
