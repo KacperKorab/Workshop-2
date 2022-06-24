@@ -26,12 +26,10 @@ public class UserDao {
         User[] users = new User[0];
         User user = new User();
 
-        ResultSet result;
         do {
-            String query = "SELECT * FROM users WHERE id = " + userID;
             Statement statement = conn.createStatement();
-            result = statement.executeQuery(query);
-
+            String query = "SELECT * FROM users WHERE id = " + userID;
+            ResultSet result = statement.executeQuery(query);
             while (result.next()) {
                 String email = result.getString("email");
                 User.setEmail(email);
@@ -39,12 +37,10 @@ public class UserDao {
                 User.setUserName(username);
                 String password = result.getString("password");
                 User.setPassword(password);
-                System.out.println("Test print1");
+                users = addToArray(user, users);
             }
-            addToArray(user, users);
             userID++;
-            System.out.println("Test print2");
-        } while (userID<10);
+        } while (userID < 10);
         return users;
     }
 

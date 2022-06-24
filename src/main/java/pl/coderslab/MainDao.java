@@ -1,21 +1,22 @@
 package pl.coderslab;
 
 import java.sql.SQLException;
-import java.util.Arrays;
 
+//TODO hashowanie hasła w update
+//TODO findAll
 public class MainDao {
     public static void main(String[] args) throws SQLException {
         boolean create = false;
         boolean read = false;
         boolean update = false;
         boolean delete = false;
-        boolean findAll = false;
+        boolean findAll = true; //nie działa (jeszcze)
 
         if (create) {
             User user1 = new User();
-            User.setEmail("bloke@email");
-            User.setUserName("bloke");
-            User.setPassword("blokeword");
+            User.setEmail("test2@email");
+            User.setUserName("test");
+            User.setPassword("testword");
 
             UserDao userDaoCreate = new UserDao();
             userDaoCreate.create(user1);
@@ -23,29 +24,29 @@ public class MainDao {
 
         if (read) {
             UserDao userDaoRead = new UserDao();
-            userDaoRead.read(1);
+            userDaoRead.read(4);
             UserDao.printUserDaoData();
         }
 
         if (update) {
             UserDao userDaoUpdate = new UserDao();
-            int userID = 1;
+            int userID = 3;
             User userUpdate = userDaoUpdate.read(userID);
             User.setId(userID);
-            User.setEmail("newbro@mail");
-            User.setUserName("newbro");
-            User.setPassword("newbroword");
+            User.setEmail("newguy@mail");
+            User.setUserName("newguy");
+            User.setPassword("newguyword");
             userDaoUpdate.update(userUpdate);
         }
         if (delete) {
             UserDao userDaoDelete = new UserDao();
-            userDaoDelete.delete(2);
+            userDaoDelete.delete(1);
         }
         if (findAll) {
             UserDao userDaoFindAll = new UserDao();
             User[] userArrResult = userDaoFindAll.findAll();
-            User userResult = userArrResult[2];
-            System.out.println(User.getUserName());
+            User userResult = userArrResult[1];
+            System.out.println(userResult.getUserName());
         }
     }
 }
