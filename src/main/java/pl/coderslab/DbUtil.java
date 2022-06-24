@@ -12,7 +12,18 @@ public class DbUtil {
     }
 
     public static Connection getConnection(String dataBaseName) throws SQLException {
-        return DriverManager.getConnection(DB_URL(dataBaseName), DB_USER, DB_PASS);
+        Connection result = null;
+        try {
+            result = DriverManager.getConnection(DB_URL(dataBaseName), DB_USER, DB_PASS);
+            if (result != null) {
+                System.out.println("Connected to '" + dataBaseName + "' database.");
+            }
+            return result;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void insert(Connection conn, String query, String... params) {
